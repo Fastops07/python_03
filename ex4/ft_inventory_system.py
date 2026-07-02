@@ -42,7 +42,7 @@ def main() -> None:
     for key, value in inventory.items():
         print(
             f"Item {key} represents "
-            f"{round(value / sum(inventory.values()) * 100, 1)}%"
+            f"{round(value / (sum(inventory.values()) * 100), 1)}%"
         )
 
     most_abundant_item: str = ""
