@@ -23,14 +23,17 @@ ACTIONS: list[str] = [
 
 def gen_event() -> typing.Generator[tuple[str, str], None, None]:
     while True:
-        random_player: int = random.choice(PLAYERS)
-        random_action: int = random.choice(ACTIONS)
-        yield (random_player, random_action)
+        random_player: str = random.choice(PLAYERS)
+        random_action: str = random.choice(ACTIONS)
+        yield random_player, random_action
 
-def consume_event(lst: list[tuple[str,str]]) -> typing.Generator[tuple[str,str], None, None]:
-    while(len(lst) != 0):
-        random_index: int = random.randint(0,len(lst) - 1)
-        item: tuple[str,str] = lst[random_index]
+
+def consume_event(
+    lst: list[tuple[str, str]],
+) -> typing.Generator[tuple[str, str], None, None]:
+    while len(lst) != 0:
+        random_index: int = random.randint(0, len(lst) - 1)
+        item: tuple[str, str] = lst[random_index]
         lst.pop(random_index)
         yield item
 
@@ -50,7 +53,9 @@ def main() -> None:
     delete_generator = consume_event(lst)
 
     for index in delete_generator:
-        print(next(delete_generator)) 
+        print(next(delete_generator))
     print("Over", lst)
+
+
 if __name__ == "__main__":
     main()
