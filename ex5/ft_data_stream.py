@@ -31,7 +31,7 @@ def gen_event() -> typing.Generator[tuple[str, str], None, None]:
 def consume_event(
     lst: list[tuple[str, str]],
 ) -> typing.Generator[tuple[str, str], None, None]:
-    while len(lst) != 0:
+    while lst:
         random_index: int = random.randint(0, len(lst) - 1)
         item: tuple[str, str] = lst[random_index]
         lst.pop(random_index)
@@ -39,6 +39,7 @@ def consume_event(
 
 
 def main() -> None:
+    print("=== Game Data Stream Processor ===")
     event_generator = gen_event()
 
     player: str
@@ -48,13 +49,13 @@ def main() -> None:
         print(f"Event {index}: Player {player} did action {action}")
 
     lst: list[tuple[str, str]] = [next(event_generator) for _ in range(10)]
-    print(lst)
+    print(f"Built list of 10 events: {lst}")
 
     delete_generator = consume_event(lst)
 
-    for index in delete_generator:
-        print(next(delete_generator))
-    print("Over", lst)
+    for item in delete_generator:
+        print(f"Got event from list: {item}")
+        print(f"Remains in list: {lst}")
 
 
 if __name__ == "__main__":

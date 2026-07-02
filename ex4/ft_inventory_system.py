@@ -21,7 +21,7 @@ def parse_inventory(args: list[str]) -> dict[str, int]:
         except ValueError as err:
             print(f"Quantity error for '{item}': {err}")
             continue
-        
+
         inventory[item] = quantity
     return inventory
 
