@@ -101,7 +101,8 @@ def main() -> None:
 
     for curr_player in players:
         print(
-            f"{curr_player.name} is missing: {get_missing_achievements(curr_player)}"
+            f"{curr_player.name} is missing: "
+            f"{get_missing_achievements(curr_player)}"
         )
 
 

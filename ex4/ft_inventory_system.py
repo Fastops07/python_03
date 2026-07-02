@@ -31,9 +31,52 @@ def main() -> None:
     inventory: dict[str, int] = {}
     inventory = parse_inventory(sys.argv[1:])
     print(f"Got inventory: {inventory}")
-    keys = inventory.keys()
-    for key in keys:
-        print(f"'{key}'", end=" ")
+
+    print(list(inventory.keys()))
+
+    print(
+        f"Total quantity of the {len(inventory)} "
+        f"items: {sum(inventory.values())}"
+    )
+
+    for key, value in inventory.items():
+        print(
+            f"Item {key} represents "
+            f"{round(value / sum(inventory.values()) * 100, 1)}%"
+        )
+
+    most_abundant_item: str = ""
+    highest_quantity: int = 0
+    least_abundant_item: str = ""
+    lowest_quantity: int = 0
+    first_item: bool = True
+
+    for item, quantity in inventory.items():
+        if first_item:
+            most_abundant_item = item
+            highest_quantity = quantity
+            least_abundant_item = item
+            lowest_quantity = quantity
+            first_item = False
+        else:
+            if quantity > highest_quantity:
+                most_abundant_item = item
+                highest_quantity = quantity
+
+            if quantity < lowest_quantity:
+                least_abundant_item = item
+                lowest_quantity = quantity
+
+    print(
+        f"Item most abundant: {most_abundant_item} "
+        f"with quantity {highest_quantity}"
+    )
+    print(
+        f"Item least abundant: {least_abundant_item} "
+        f"with quantity {lowest_quantity}"
+    )
+    inventory.update({"sword": 99, "shield": 99})
+    print(f"Updated inventory: {inventory}")
 
 
 if __name__ == "__main__":
