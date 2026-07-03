@@ -40,7 +40,9 @@ def consume_event(
 
 def main() -> None:
     print("=== Game Data Stream Processor ===")
-    event_generator = gen_event()
+    event_generator: typing.Generator[tuple[str, str], None, None] = (
+        gen_event()
+    )
 
     player: str
     action: str
@@ -48,14 +50,14 @@ def main() -> None:
         player, action = next(event_generator)
         print(f"Event {index}: Player {player} did action {action}")
 
-    lst: list[tuple[str, str]] = [next(event_generator) for _ in range(10)]
-    print(f"Built list of 10 events: {lst}")
+    event_list: list[tuple[str, str]] = [
+        next(event_generator) for _ in range(10)
+    ]
+    print(f"Built list of 10 events: {event_list}")
 
-    delete_generator = consume_event(lst)
-
-    for item in delete_generator:
+    for item in consume_event(event_list):
         print(f"Got event from list: {item}")
-        print(f"Remains in list: {lst}")
+        print(f"Remains in list: {event_list}")
 
 
 if __name__ == "__main__":
