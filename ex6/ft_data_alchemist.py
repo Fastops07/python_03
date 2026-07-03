@@ -14,7 +14,7 @@ PLAYERS: list[str] = [
 
 
 def main() -> None:
-    print("=== Data Alchemist ===")
+    print("=== Game Data Alchemist ===")
     print()
 
     inital_players: list[str] = PLAYERS
@@ -30,10 +30,22 @@ def main() -> None:
     ]
     print(f"New list of capitalized names only: {only_capitalize}")
 
-    dict_score: dict[str,int] = {
-        name: random.randint(0,1000) for name in capitalized_players
+    dict_score: dict[str, int] = {
+        name: random.randint(0, 1000) for name in capitalized_players
     }
     print(f"Score dict: {dict_score}")
+
+    total_score: int = sum(dict_score.values())
+    average_score: float = total_score / len(dict_score)
+    print(f"Score average is {average_score:.2f}")
+
+    dict_high_score: dict[str, int] = {
+        name: score
+        for name, score in dict_score.items()
+        if score > average_score
+    }
+    print(f"High scores: {dict_high_score}")
+
 
 if __name__ == "__main__":
     main()
