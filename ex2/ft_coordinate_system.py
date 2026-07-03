@@ -15,19 +15,19 @@ def get_player_pos() -> tuple[float, float, float]:
             continue
 
         try:
-            x = float(x_str.strip())
+            x: float = float(x_str.strip())
         except ValueError as err:
             print(f"Error on parameter '{x_str.strip()}': {err}")
             continue
 
         try:
-            y = float(y_str.strip())
+            y: float = float(y_str.strip())
         except ValueError as err:
             print(f"Error on parameter '{y_str.strip()}': {err}")
             continue
 
         try:
-            z = float(z_str.strip())
+            z: float = float(z_str.strip())
         except ValueError as err:
             print(f"Error on parameter '{z_str.strip()}': {err}")
             continue
