@@ -37,7 +37,7 @@ def main() -> None:
 
     total_score: int = sum(score_dict.values())
     average_score: float = total_score / len(score_dict)
-    print(f"Score average is {average_score:.2f}")
+    print(f"Score average is {round(average_score, 2)}")
 
     high_score_dict: dict[str, int] = {
         name: score
