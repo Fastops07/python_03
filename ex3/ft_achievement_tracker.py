@@ -53,13 +53,13 @@ def get_all_distinct_achievements(players: list[Player]) -> set[str]:
     return distinct_achievements
 
 
-def get_commun_achievements(players: list[Player]) -> set[str]:
-    commun_achievements: set[str] = players[0].achievements
+def get_common_achievements(players: list[Player]) -> set[str]:
+    common_achievements: set[str] = players[0].achievements
     for player in players[1:]:
-        commun_achievements = commun_achievements.intersection(
+        common_achievements = common_achievements.intersection(
             player.achievements
         )
-    return commun_achievements
+    return common_achievements
 
 
 def get_missing_achievements(player: Player) -> set[str]:
@@ -90,8 +90,8 @@ def main() -> None:
     print(f"All distinct achievements: {all_distinct_achievements}")
     print()
 
-    commun_achievements: set[str] = get_commun_achievements(players)
-    print(f"Common achievements: {commun_achievements}")
+    common_achievements: set[str] = get_common_achievements(players)
+    print(f"Common achievements: {common_achievements}")
     print()
 
     for curr_player in players:
