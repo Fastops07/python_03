@@ -40,8 +40,7 @@ def main() -> None:
     print(f"Score average is {round(average_score, 2)}")
 
     high_score_dict: dict[str, int] = {
-        name: score
-        for name, score in score_dict.items()
+        name: score for name, score in score_dict.items()
         if score > average_score
     }
     print(f"High scores: {high_score_dict}")
