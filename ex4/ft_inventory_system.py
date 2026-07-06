@@ -35,7 +35,7 @@ def main() -> None:
 
     total_quantity: int = sum(inventory.values())
 
-    print(f"Total quantity of the {len(inventory)}  items: {total_quantity}")
+    print(f"Total quantity of the {len(inventory)} items: {total_quantity}")
 
     if total_quantity == 0:
         print("Cannot compute percentages: total quantity is 0")

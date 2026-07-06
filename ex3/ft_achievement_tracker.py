@@ -20,7 +20,7 @@ ALL_ACHIEVEMENTS: list[str] = [
 
 class Player:
     def __init__(self, name: str) -> None:
-        self.name = name
+        self.name: str = name
         self.achievements: set[str] = set()
 
 
